@@ -5,7 +5,7 @@ Quickly add SalesIQ to your WHMCS instance.
 You can install the `rhipe_csp` module by cloning the git repository from the root of your WHMCS installation.
 ```
 cd modules/addons
-git clone https://github.com/LightningIP/whmcs-rhipecsp zoho_salesiq
+git clone https://github.com/LightningIP/whmcs-rhipecsp rhipe_csp
 ```
 
 ## Update
