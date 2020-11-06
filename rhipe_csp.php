@@ -1,18 +1,15 @@
 <?php
 
 use WHMCS\Database\Capsule as DB;
-use WHMCS\Module\Server\lip_rhipe_csp\RhipeMetricsProvider;
-use WHMCS\Module\Server\lip_rhipe_csp\API;
+use WHMCS\Module\Server\rhipe_csp\RhipeMetricsProvider;
+use WHMCS\Module\Server\rhipe_csp\API;
 use WHMCS\Service\Status;
 
-function lip_rhipe_csp_MetaData()
+function rhipe_csp_MetaData()
 {
     return array(
-        // The display name of the unique identifier to be displayed on the table output
         'ListAccountsUniqueIdentifierDisplayName' => 'Subscription ID',
-        // The field in the return that matches the unique identifier
         'ListAccountsUniqueIdentifierField' => 'username',
-        // The config option indexed field from the _ConfigOptions function that identifies the product on the remote system
         'ListAccountsProductField' => 'configoption1',
     );
 }
@@ -20,7 +17,7 @@ function lip_rhipe_csp_MetaData()
 /**
  * Product Configuration Options
  */
-function lip_rhipe_csp_ConfigOptions() {
+function rhipe_csp_ConfigOptions() {
     return [
         'ProductID' => [
             'FriendlyName' => 'Product ID', 
@@ -31,12 +28,11 @@ function lip_rhipe_csp_ConfigOptions() {
 }
 
 
-function lip_rhipe_csp_MetricProvider($params) {
+function rhipe_csp_MetricProvider($params) {
     return new RhipeMetricsProvider($params);
 }
 
-
-function lip_rhipe_csp_ListAccounts( array $params ) {
+function rhipe_csp_ListAccounts( array $params ) {
     try {
         
         $api = new API($params['serverusername'],$params['serverpassword']);

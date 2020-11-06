@@ -1,6 +1,6 @@
 <?php
 
-namespace WHMCS\Module\Server\lip_rhipe_csp;
+namespace WHMCS\Module\Server\rhipe_csp;
 
 use WHMCS\UsageBilling\Metrics\Units\FloatingPoint;
 

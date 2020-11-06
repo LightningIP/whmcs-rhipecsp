@@ -1,6 +1,6 @@
 <?php
 
-namespace WHMCS\Module\Server\lip_rhipe_csp;
+namespace WHMCS\Module\Server\rhipe_csp;
 
 class API {
 
@@ -72,9 +72,37 @@ class API {
         return json_decode($response);
     }
 
-    private function _getToken() {
+    public function getSubscription($subscriptionId) {
+
+        $token = $this->_getToken();
 
         $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "https://api.prismportal.online/api/v2/consumption/subscriptions/{$subscriptionId}",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer {$token}",
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        return json_decode($response);
+    }
+
+    
+
+    private function _getToken() {
+
+        $curl = \curl_init();
 
         curl_setopt_array($curl, array(
             CURLOPT_URL => "https://identity.prismportal.online/core/connect/token",
